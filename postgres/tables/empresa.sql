@@ -4,6 +4,5 @@ CREATE TABLE "empresa" (
 	"cnpj" VARCHAR(18),
 	"sigla" VARCHAR(255),
 	"email" VARCHAR(255) NOT NULL,
-	"senha" VARCHAR(255) NOT NULL,
 	PRIMARY KEY("id")
 );
