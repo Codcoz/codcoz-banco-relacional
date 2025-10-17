@@ -4,6 +4,7 @@ CREATE TABLE "pedido" (
 	"data_compra" TIMESTAMP NOT NULL,
 	"data_previsao" TIMESTAMP,
 	"data_recebimento" TIMESTAMP,
+	"cod_nota_fiscal"  VARCHAR(100),
 	"descricao" VARCHAR(100),
 	PRIMARY KEY("id")
 );
