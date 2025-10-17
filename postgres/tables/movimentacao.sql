@@ -3,6 +3,9 @@ CREATE TABLE "movimentacao" (
 	"produto_id" INTEGER NOT NULL,
 	"tipo_movimentacao_id" INTEGER NOT NULL,
 	"data" TIMESTAMP NOT NULL,
+	"old_quantidade" INTEGER,
+	"new_quantidade" INTEGER,
+	"diferenca" INTEGER,
 	PRIMARY KEY("id")
 );
 
