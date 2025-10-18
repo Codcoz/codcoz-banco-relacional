@@ -4,7 +4,7 @@ CREATE TABLE "funcionario" (
 	"funcao_id" INTEGER NOT NULL,
 	"nome" VARCHAR(100) NOT NULL,
 	"sobrenome" VARCHAR(100),
-	"status" VARCHAR(20) NOT NULL,
+	"status" VARCHAR(20) NOT NULL DEFAULT 'ATIVO',
 	"email" VARCHAR(255) NOT NULL,
 	"data_contratacao" DATE,
 	PRIMARY KEY("id")
