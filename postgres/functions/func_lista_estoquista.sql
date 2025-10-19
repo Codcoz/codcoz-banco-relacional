@@ -1,7 +1,6 @@
 CREATE OR REPLACE FUNCTION func_lista_estoquista()
 RETURNS TABLE (
-	nome VARCHAR(100),
-	sobrenome VARCHAR(100),
+	nome TEXT,
 	empresa VARCHAR(100),
 	funcao VARCHAR(100),
 	status VARCHAR(100),
@@ -12,10 +11,9 @@ BEGIN
 	
 	RETURN QUERY
 		SELECT 
-			fu.nome,
-			fu.sobrenome,
-			e.nome	as empresa,
-			f.nome	as funcao,
+			fu.nome || ' ' || fu.sobrenome 	as nome,
+			e.nome							as empresa,
+			f.nome							as funcao,
 			fu.status,
 			fu.email
 		FROM funcionario fu
