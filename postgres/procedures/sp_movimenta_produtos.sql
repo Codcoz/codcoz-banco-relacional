@@ -1,5 +1,5 @@
 CREATE OR REPLACE PROCEDURE sp_movimenta_produtos( 
-	produto_idn INTEGER,
+	codigo_eann VARCHAR(200),
 	quantidaden INTEGER
 )
 LANGUAGE plpgsql
@@ -9,7 +9,7 @@ BEGIN
     
     UPDATE produto
 	SET quantidade = quantidade + quantidaden
-	WHERE id = produto_idn;
+	WHERE codigo_ean = codigo_eann;
 			
 	RAISE NOTICE 'Produto atualizado!';
 	
