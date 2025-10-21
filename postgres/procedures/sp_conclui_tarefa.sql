@@ -1,4 +1,4 @@
-CREATE OR REPLACE PROCEDURE sp_conclui_tarefa(idn INTEGER)
+CREATE OR REPLACE PROCEDURE sp_conclui_tarefa(idn INTEGER, contagemn INTEGER)
 LANGUAGE plpgsql
 AS $$
 BEGIN
@@ -8,7 +8,8 @@ BEGIN
 		UPDATE tarefa
 		SET 
 			situacao = 'CONCLUÍDA',
-			data_conclusao = current_timestamp
+			data_conclusao = current_timestamp,
+			contagem = contagemn
 		WHERE id = idn;
 
 		RAISE NOTICE 'Tarefa % atualizado com sucesso!', idn;

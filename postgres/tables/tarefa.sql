@@ -7,6 +7,8 @@ CREATE TABLE "tarefa" (
 	"responsavel_id" INTEGER NOT NULL,
 	"pedido_id" INTEGER,
 	"situacao" VARCHAR(255) NOT NULL,
+	"quantidade_esperada" INTEGER,
+	"contagem" INTEGER,
 	"data_criacao" TIMESTAMP NOT NULL,
 	"data_limite" TIMESTAMP,
 	"data_conclusao" TIMESTAMP,
