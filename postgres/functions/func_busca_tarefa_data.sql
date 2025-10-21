@@ -3,10 +3,12 @@ RETURNS TABLE (
 	empresa VARCHAR(100),
 	tipo_tarefa VARCHAR(100),
 	ingrediente VARCHAR(100),
-	relator VARCHAR(100),
-	responsavel VARCHAR(100),
+	relator TEXT,
+	responsavel TEXT,
 	pedido VARCHAR(100),
 	situacao VARCHAR(100),
+	quantidade_esperada INTEGER,
+	contagem INTEGER,
 	data_criacao DATE,
 	data_limite DATE,
 	data_conclusao DATE
@@ -16,13 +18,15 @@ BEGIN
 	
 	RETURN QUERY
 		SELECT 
-			e.nome 		as empresa,
-			tt.nome		as tipo_tarefa,
-			i.nome		as ingrediente,
-			rel.nome	as relator,
-			res.nome	as responsavel,
-			p.descricao	as pedido,
+			e.nome 								as empresa,
+			tt.nome								as tipo_tarefa,
+			i.nome								as ingrediente,
+			rel.nome || ' ' || rel.sobrenome	as relator,
+			res.nome || ' '	|| res.sobrenome    as responsavel,
+			p.descricao							as pedido,
 			t.situacao,
+			t.quantidade_esperada,
+			t.contagem,
 			t.data_criacao,
 			t.data_limite,
 			t.data_conclusao

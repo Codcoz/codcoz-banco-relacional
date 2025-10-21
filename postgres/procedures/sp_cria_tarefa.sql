@@ -7,8 +7,7 @@ CREATE OR REPLACE PROCEDURE sp_cria_tarefa(
 	pedido_idn INTEGER,
 	situacaon VARCHAR(100),
 	data_criacaon DATE,
-	data_limiten DATE,
-	data_conclusaon DATE
+	data_limiten DATE
 )
 LANGUAGE plpgsql
 AS $$
@@ -22,9 +21,9 @@ BEGIN
 		responsavel_id,
 		pedido_id,
 		situacao,
+		quantidade_esperada,
 		data_criacao,
-		data_limite,
-		data_conclusao
+		data_limite
 	) VALUES (
 		empresa_idn, 
 		tipo_tarefa_idn, 
@@ -33,9 +32,11 @@ BEGIN
 		responsavel_idn,
 		pedido_idn,
 		situacaon,
+		(SELECT COUNT(*) FROM produto p
+		JOIN ingrediente i ON i.id = p.ingrediente_id
+		WHERE p.ingrediente_id = ingrediente_idn),		
 		data_criacaon,
-		data_limiten,
-		data_conclusaon
+		data_limiten
 	);
 	
 	RAISE NOTICE 'Nova tarefa cadastrado!';
