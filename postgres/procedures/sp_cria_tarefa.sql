@@ -11,6 +11,8 @@ CREATE OR REPLACE PROCEDURE sp_cria_tarefa(
 )
 LANGUAGE plpgsql
 AS $$
+DECLARE
+	tarefa_idn INTEGER;
 BEGIN
 
 	INSERT INTO tarefa(
@@ -37,6 +39,12 @@ BEGIN
 		WHERE p.ingrediente_id = ingrediente_idn),		
 		data_criacaon,
 		data_limiten
+	) RETURNING id INTO tarefa_idn;
+	
+	INSERT INTO notificacao(
+		tarefa_id
+	) VALUES (
+		tarefa_idn
 	);
 	
 	RAISE NOTICE 'Nova tarefa cadastrado!';
