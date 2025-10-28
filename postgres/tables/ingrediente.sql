@@ -4,9 +4,13 @@ CREATE TABLE "ingrediente" (
 	"nome" VARCHAR(100) NOT NULL,
 	"descricao" VARCHAR(200),
 	"quantidade_minima" INTEGER,
+	"empresa_id" INTEGER,
 	PRIMARY KEY("id")
 );
 
+ALTER TABLE "ingrediente"
+ADD FOREIGN KEY("empresa_id") REFERENCES "empresa"("id")
+ON UPDATE NO ACTION ON DELETE NO ACTION;
 ALTER TABLE "categoria_ingrediente"
 ADD FOREIGN KEY("empresa_id") REFERENCES "empresa"("id")
 ON UPDATE NO ACTION ON DELETE NO ACTION;
