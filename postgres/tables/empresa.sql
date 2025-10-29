@@ -5,5 +5,6 @@ CREATE TABLE "empresa" (
 	"sigla" VARCHAR(255),
 	"email" VARCHAR(255) NOT NULL,
 	"status" VARCHAR(20),
+	"capacidade_estoque" INTEGER,
 	PRIMARY KEY("id")
 );
