@@ -11,7 +11,7 @@ BEGIN
 		
 		ELSE
 			SELECT 
-				SUM(quantidade) INTO produtos
+				COUNT(*) INTO produtos
 			FROM produto p
 			WHERE p.empresa_id = id_empresa;
 

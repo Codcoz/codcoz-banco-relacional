@@ -10,15 +10,20 @@ BEGIN
 			
 		ELSE
 			SELECT 
-        		COALESCE(SUM(p.quantidade)::NUMERIC / e.capacidade_estoque * 100, 0) INTO estoque_ocupado
+				TRUNC(COALESCE(SUM(p.quantidade)::NUMERIC / e.capacidade_estoque * 100, 0), 2)
+			INTO estoque_ocupado
 			FROM produto p
 			JOIN empresa e ON p.empresa_id = e.id
 			WHERE e.id = id_empresa
 			GROUP BY e.capacidade_estoque;
+
+			IF estoque_ocupado IS NULL THEN
+				estoque_ocupado := 0;
+			END IF;
 			
 			RETURN estoque_ocupado;
 			
-		END IF;
+	END IF;
 		
 		EXCEPTION
 			WHEN others THEN
