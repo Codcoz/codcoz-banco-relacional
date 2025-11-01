@@ -6,9 +6,18 @@ CREATE TABLE "movimentacao" (
 	"old_quantidade" INTEGER,
 	"new_quantidade" INTEGER,
 	"diferenca" INTEGER,
+	"empresa_id" INTEGER,
 	PRIMARY KEY("id")
 );
 
 ALTER TABLE "movimentacao"
 ADD FOREIGN KEY("produto_id") REFERENCES "produto"("id")
+ON UPDATE NO ACTION ON DELETE NO ACTION;
+
+ALTER TABLE "movimentacao"
+ADD FOREIGN KEY("empresa_id") REFERENCES "empresa"("id")
+ON UPDATE NO ACTION ON DELETE NO ACTION;
+
+ALTER TABLE "movimentacao"
+ADD FOREIGN KEY("tipo_movimentacao_id") REFERENCES "tipo_movimentacao"("id")
 ON UPDATE NO ACTION ON DELETE NO ACTION;
