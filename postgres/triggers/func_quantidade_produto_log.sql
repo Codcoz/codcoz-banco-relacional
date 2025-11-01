@@ -15,12 +15,14 @@ DECLARE
 					produto_id, 
 					tipo_movimentacao_id,
 					data,
-					new_quantidade
+					new_quantidade,
+					empresa_id
 				) VALUES
 				(NEW.id, 
 				 (SELECT id FROM tipo_movimentacao WHERE tipo = 'BAIXA'),
 				 current_timestamp,
-				 new_quantidade
+				 new_quantidade,
+				 NEW.empresa_id
 				);
 
 		
@@ -33,14 +35,16 @@ DECLARE
 					data,
 					old_quantidade,
 					new_quantidade,
-					diferenca
+					diferenca,
+					empresa_id
 				) VALUES
 				(NEW.id, 
 				 (SELECT id FROM tipo_movimentacao WHERE tipo = 'BAIXA'),
 				 current_timestamp,
 				 old_quantidade,
 				 new_quantidade,
-				 (old_quantidade - new_quantidade) * -1
+				 ABS(old_quantidade - new_quantidade),
+				 NEW.empresa_id
 				);
 
 			ELSE
@@ -50,14 +54,16 @@ DECLARE
 					data,
 					old_quantidade,
 					new_quantidade,
-					diferenca
+					diferenca,
+					empresa_id
 				) VALUES
 				(NEW.id, 
 				 (SELECT id FROM tipo_movimentacao WHERE tipo = 'ENTRADA'),
 				 current_timestamp,
 				 old_quantidade,
 				 new_quantidade,
-				 (old_quantidade - new_quantidade) * -1
+				 ABS(old_quantidade - new_quantidade),
+				 NEW.empresa_id
 				);
 
 			END IF;
