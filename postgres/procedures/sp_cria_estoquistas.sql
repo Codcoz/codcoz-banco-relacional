@@ -23,7 +23,7 @@ BEGIN
 			funcao_idn, 
 			nomen,
 			sobrenomen,
-			statusn,
+			UPPER(statusn),
 			emailn,
 			current_date
 		);
