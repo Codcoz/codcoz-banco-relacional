@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION func_lista_tarefa_data_conclusao(conclusao DATE, emailn VARCHAR(250))
+CREATE OR REPLACE FUNCTION func_lista_tarefa_data_conclusao(conclusao DATE, empresa_idn INTEGER)
 RETURNS TABLE (
 	empresa VARCHAR(100),
 	tipo_tarefa VARCHAR(100),
@@ -38,7 +38,7 @@ BEGIN
 		LEFT JOIN funcionario res ON res.id = t.responsavel_id
 		LEFT JOIN pedido p ON p.id = t.pedido_id
 		WHERE t.data_conclusao >= conclusao
-		AND res.email = emailn
+		AND e.id = empresa_idn
 		ORDER BY t.data_limite ASC;
 		
 		EXCEPTION
